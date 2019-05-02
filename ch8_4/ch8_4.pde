@@ -1,0 +1,41 @@
+// Exercise 8-4: Rewrite the following code by creating a Ball class. 
+// Include two instances of a Ball object. Your class code should go in a 
+// separate tab
+
+float x = 240;   // x location of square
+float y = 0;     // y location of square
+
+float speed = 0;   // speed of ball
+
+// A new variable, for gravity (i.e. acceleration).   
+// We use a relatively small number (0.1) because this accelerations accumulates over time, increasing the speed.   
+// Try changing this number to 2.0 and see what happens.
+float gravity = 0.1;  
+
+void setup() {
+  size(480, 270);
+}
+
+void draw() {
+  background(255);
+
+  // Display the ball
+  fill(175);
+  stroke(0);
+  ellipse(x, y, 30, 30);
+
+  // Add speed to location.
+  y = y + speed;
+
+  // Add gravity to speed.
+  speed = speed + gravity;
+
+  // If ball reaches the bottom
+  // Reverse speed
+  if (y > height) {
+    // Multiplying by -0.95 instead of -1 slows the ball down each time it bounces (by decreasing speed).  
+    // This is known as a "dampening" effect and is a more realistic simulation of the real world (without it, a ball would bounce forever).
+    speed = speed * -0.95;
+    y = height;
+  }
+}
